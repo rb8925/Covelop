@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_memorial">
+
+    <fragment
+        android:id="@+id/nav_memorial"
+        android:name="com.example.myapplication.ui.memorial.MemorialFragment"
+        android:label="@string/menu_memorial"
+        tools:layout="@layout/fragment_memorial" />
+
+    <fragment
+        android:id="@+id/nav_gallery"
+        android:name="com.example.myapplication.ui.gallery.GalleryFragment"
+        android:label="@string/menu_gallery"
+        tools:layout="@layout/fragment_gallery" />
+
+    <fragment
+        android:id="@+id/nav_payment"
+        android:name="com.example.myapplication.ui.payment.PaymentFragment"
+        android:label="@string/menu_payment"
+        tools:layout="@layout/fragment_payment" />
+
+    <fragment
+        android:id="@+id/nav_ossuary"
+        android:name="com.example.myapplication.ui.ossuary.OssuaryFragment"
+        android:label="@string/menu_ossuary"
+        tools:layout="@layout/fragment_ossuary" />
+
+    <fragment
+        android:id="@+id/nav_logout"
+        android:name="com.example.myapplication.ui.LogoutFragment"
+        android:label="@string/menu_logout"
+        tools:layout="@layout/fragment_logout"/>
+
+</navigation>
