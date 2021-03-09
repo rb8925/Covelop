@@ -73,13 +73,13 @@ public class RegisterActivity extends AppCompatActivity {
                                         Toast.makeText(RegisterActivity.this, "Registered successfully. Please check you email for verification.", Toast.LENGTH_SHORT).show();
                                         mEmail.setText("");
                                         mPassword.setText("");
+                                        startActivity(new Intent(getApplicationContext(),LoginActivity.class));
+                                        finish();
                                     }else{
                                         Toast.makeText(RegisterActivity.this, "Error ! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                                     }
                                 }
                             });
-
-                            //startActivity(new Intent(getApplicationContext(),MainActivity.class));
                         }else{
                             Toast.makeText(RegisterActivity.this, "Error ! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                         }
