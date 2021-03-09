@@ -39,6 +39,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         mRegisterBtn.setOnClickListener(new View.OnClickListener() {
 
+
             @Override
             public void onClick(View v) {
                 String email = mEmail.getText().toString().trim();
@@ -58,20 +59,29 @@ public class RegisterActivity extends AppCompatActivity {
                     mPassword.setError("Password Must be over 6 Characters");
                     return;
                 }
-
                 progressBar.setVisibility(View.VISIBLE);
-
-                //register the user
 
                 fAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
+                        progressBar.setVisibility(View.GONE);
                         if(task.isSuccessful()){
-                            Toast.makeText(RegisterActivity.this, "User Created.", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                            fAuth.getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if(task.isSuccessful()) {
+                                        Toast.makeText(RegisterActivity.this, "Registered successfully. Please check you email for verification.", Toast.LENGTH_SHORT).show();
+                                        mEmail.setText("");
+                                        mPassword.setText("");
+                                    }else{
+                                        Toast.makeText(RegisterActivity.this, "Error ! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
+
+                            //startActivity(new Intent(getApplicationContext(),MainActivity.class));
                         }else{
                             Toast.makeText(RegisterActivity.this, "Error ! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                            progressBar.setVisibility(View.GONE);
                         }
                     }
                 });
